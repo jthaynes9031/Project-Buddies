@@ -62,8 +62,9 @@ public class Payroll extends Employee {
 	//thursday possible
 	//net pay
 	public void netPay() {
-		//HOLD OFF
-		//calculations
+		
+		//weekly pay array
+		//benefits
 		
 	}
 	
@@ -146,5 +147,16 @@ public class Payroll extends Employee {
 		// the net pay
 		//benefits
 	}
+	
+	//daily pay method in which subtract clock out - clock in
+	//put in array of 7
+	// using loop
+	//return that array
+	
+	
+	//weekly pay
+	//add all in-da-sexies in daily payarray
+	//return Integer weekly pay;
+	//Array list;
 
 }
