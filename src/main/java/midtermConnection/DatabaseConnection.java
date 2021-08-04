@@ -73,6 +73,7 @@ public class DatabaseConnection{
 			}
 			else if(choose.equals("clock out")) {
 				emp.employeeOut();
+				System.out.println("Youre out");
 				quit = true;
 			}
 			else if (choose.equals("quit")) {

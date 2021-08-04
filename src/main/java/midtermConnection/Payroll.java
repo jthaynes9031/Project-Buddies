@@ -146,9 +146,5 @@ public class Payroll extends Employee {
 		// the net pay
 		//benefits
 	}
-	
-	//public void method(int arr[]) {
-		
-	//}
 
 }
