@@ -4,6 +4,7 @@ package midtermConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -15,7 +16,7 @@ public class Employee{
 
 	
 //Andrea was there
-	
+
 	
 	public void findEmployee() { 
 		try 
@@ -171,13 +172,31 @@ public class Employee{
 				 
 				 if(inOrOut == 1) {
 					 System.out.println("You're In");
+					 cTime();
+
 				 }
-				 if(inOrOut == 0){
+				 if(inOrOut == 0) {
 					 System.out.println("You're out");
+					 eTime();
+					 System.out.println("Time:" + dTime());
 				 }	
 			 }	
 		 }catch(SQLException e) {
 			 e.printStackTrace();
 		 }
 	 }
+		 public int cTime() {
+			 Date startTime = new Date();
+			 int secs = (int)(startTime.getTime() / 1000 );
+			return secs;
+			 }
+		 public int eTime() {
+			 Date endTime = new Date();
+			 int sec = (int)(endTime.getTime() / 1000 );
+			return sec;
+			 }
+		 public int dTime() {
+			int dif = (eTime() - cTime());
+			return dif;
+		 }
 }
