@@ -3,8 +3,10 @@ package midtermConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.sql.PreparedStatement;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -178,7 +180,7 @@ public class Employee{
 				 if(inOrOut == 0) {
 					 System.out.println("You're out");
 					 eTime();
-					 System.out.println("Time:" + dTime());
+					 System.out.println("Time:" + date);
 				 }	
 			 }	
 		 }catch(SQLException e) {
@@ -188,16 +190,19 @@ public class Employee{
 
 		 public int cTime() {
 			 Date startTime = new Date();
-			 int secs = (int)(startTime.getTime() / 10000 );
+			 int secs = (int)(startTime.getTime() / 1000 );
 			return secs;
 			 }
 		 public int eTime() {
 			 Date endTime = new Date();
-			 int sec = (int)(endTime.getTime() / 10000 );
+			 int sec = (int)(endTime.getTime() / 1000 );
 			return sec;
 			 }
 		 public int dTime(){
 			int dif = (eTime() - cTime());
 			return dif;
 		 }
+		 Locale locale = new Locale("en", "US");
+		 DateFormat dateFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
+		 String date = dateFormat.format(dTime());
 }
