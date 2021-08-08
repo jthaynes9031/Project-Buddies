@@ -38,6 +38,14 @@ public class DatabaseConnection{
 	
 	//EVERYTHING RUNS ON HERE!!!
 	public static void main(String[] args) {
+		
+		System.out.println("--------------------------------");
+		System.out.println("Welcome to the HRIS, instructions on things you can do are below");
+		System.out.println("--------------------------------");
+		System.out.println("This HRIS allows you to create, read, update, and delete data in the database pertaining to employees or yourself");
+		System.out.println("--------------------------------");
+		System.out.println("Start by Clocking in,  Enjoy :)");
+		
 		Employee emp = new Employee();
 		Payroll pay = new Payroll();
 		Benefits ben = new Benefits();
