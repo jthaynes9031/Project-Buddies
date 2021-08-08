@@ -20,7 +20,7 @@ public class DatabaseConnection{
 	// Constructor (connector method below main method )
 	public DatabaseConnection() {
 
-		String url = "jdbc:mysql://localhost:3306/midterm";
+		String url = "jdbc:mysql://localhost:3306/final";
 		String user = "root";
 		String password = "Password1";
 		try
@@ -97,7 +97,7 @@ public class DatabaseConnection{
 	public static void connector() {
 		Scanner input = new Scanner(System.in);
 		
-		String url = "jdbc:mysql://localhost:3306/midterm";
+		String url = "jdbc:mysql://localhost:3306/final";
 		String user = "root";
 		String password = "Password1";
 		
@@ -115,4 +115,5 @@ public class DatabaseConnection{
 			throwables.printStackTrace();
 		}
 	}
+	
 }

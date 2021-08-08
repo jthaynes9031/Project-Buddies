@@ -6,6 +6,7 @@ public class Fin {
 	 this class is for performance,training and positions
 	 using getters and setters
 	 and will implement in the interface
+	 
 	*/
 	int employeeId;
 	int performance;
