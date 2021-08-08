@@ -4,8 +4,6 @@ package midtermConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -33,8 +31,7 @@ public class Employee{
 			
 			System.out.println("what are you looking for?");
 			String find = result1.getString(myObj.nextLine());
-			System.out.println(find);
-			
+			System.out.println(find);	
 		}
 		
 		}catch (Exception e) {
@@ -114,7 +111,6 @@ public class Employee{
 			 if(rowsUpdated > 0) {
 				 System.out.println("User has been updated");
 			 }
-			 
 		 }catch(Exception e) {
 			 e.printStackTrace();
 		 }
