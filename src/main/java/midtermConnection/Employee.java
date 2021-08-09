@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class Employee{
 	
+	
 	DatabaseConnection databaseConn = new DatabaseConnection();
 	Scanner myObj = new Scanner(System.in);
 
@@ -44,19 +45,17 @@ public class Employee{
 	public void addEmployee() {
 		 try 
 			{			
-		    String addEmployee = "INSERT INTO employee (first_name, last_name, email, address, employee_number) VALUES (?, ?, ?, ?, ?)";
+		    String addEmployee = "INSERT INTO employee (first_name, last_name, email, employee_number) VALUES (?, ?, ?, ?)";
 			PreparedStatement statement = databaseConn.connection.prepareStatement(addEmployee);
 			
 			System.out.println("add firstname");
-			statement.setString(1, myObj.nextLine());
+			statement.setString(1, myObj.next());
 			System.out.println("add lastname");
-			statement.setString(2, myObj.nextLine());
+			statement.setString(2, myObj.next());
 			System.out.println("add email");
-			statement.setString(3, myObj.nextLine());
-			System.out.println("add address");
-			statement.setString(4, myObj.nextLine());
+			statement.setString(3, myObj.next());
 			System.out.println("add 4 employee number");
-			statement.setInt(5,myObj.nextInt());
+			statement.setInt(4,myObj.nextInt());
 			
 			
 				
@@ -93,21 +92,19 @@ public class Employee{
 	 }
 	 public void updateEmployee() {
 		 try {
-			 String updateEmployee = "UPDATE employee SET first_name = ?, last_name = ?, email = ?, address = ? WHERE employee_number = ?";
+			String updateEmployee = "UPDATE employee SET first_name = ?, last_name = ?, email = ? WHERE employee_number = ?";
 			 PreparedStatement statement = databaseConn.connection.prepareStatement(updateEmployee);
 			 			 
 			 //System.out.println("Follow prompt below: ");
 			// myObj.next();
 			 System.out.println("Keep first name or update first name to: ");
-			 statement.setString(1, myObj.nextLine());
+			 statement.setString(1, myObj.next());
 			 System.out.println("Keep last name or update  last name to: ");
-			 statement.setString(2, myObj.nextLine());
+			 statement.setString(2, myObj.next());
 			 System.out.println("Keep email or update email to:");
-			 statement.setString(3,myObj.nextLine());
-			 System.out.println("Keep address or update address to: ");
-			 statement.setString(4,myObj.nextLine());
+			 statement.setString(3, myObj.next());
 			 System.out.println("Enter employee number for update");
-			 statement.setInt(5,myObj.nextInt());
+			 statement.setInt(4, myObj.nextInt());
 			 int rowsUpdated = statement.executeUpdate();
 			 
 			 if(rowsUpdated > 0) {
