@@ -8,6 +8,9 @@ public interface TrainingandPerformance {
 	 * 
 	 */
 	
-	String SET_PERFORMANCE = "Insert into performance (performance, employee_id) value(?,?)";
-	String UPDATE_PERFORMANCE = "Update performance set performance = ? where employee_id = ?";
+	String SET_PERFORMANCE = "Insert into performance (performance, employee_number) value(?,?)";
+	String UPDATE_PERFORMANCE = "Update performance set performance = ? where employee_number = ?";
+	
+	
+
 }

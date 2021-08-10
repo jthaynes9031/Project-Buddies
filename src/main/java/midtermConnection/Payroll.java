@@ -161,7 +161,11 @@ public class Payroll extends Employee {
 	 *		daily pay method in which subtract clock out - clock in
 			put in array of 7
 			 using loop
-			return that array
+			return that arrayy
+			array sum
+			return the array sum
+			run query that'll set the net_pay col
+			to array sum
 			
 			
 			weekly pay

@@ -20,7 +20,6 @@ public class Fin {
 	
 	public void setEmployeePerformance(int performance) {
 		this.performance = performance;
-		
 	}
 	
 	public int getEmployeePerformance() {

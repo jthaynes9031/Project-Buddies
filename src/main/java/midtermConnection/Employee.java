@@ -28,7 +28,7 @@ public class Employee{
 		String findEmployee = "SELECT * FROM employee WHERE first_name = ?";
 		PreparedStatement statement = databaseConn.connection.prepareStatement(findEmployee);
 		System.out.println("Enter First name");
-		statement.setString(1, myObj.nextLine());
+		statement.setString(1, myObj.next());
 		ResultSet result1 = statement.executeQuery();
 		while(result1.next()) {
 			

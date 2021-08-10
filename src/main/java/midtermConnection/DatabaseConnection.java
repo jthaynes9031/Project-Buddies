@@ -44,7 +44,7 @@ public class DatabaseConnection{
 		System.out.println("--------------------------------");
 		System.out.println("This HRIS allows you to create, read, update, and delete data in the database pertaining to employees or yourself");
 		System.out.println("--------------------------------");
-		System.out.println("Start by Clocking in,  Enjoy :)");
+		System.out.println("Start by pressing enter,  Enjoy :)");
 		
 		Employee emp = new Employee();
 		Payroll pay = new Payroll();
@@ -79,6 +79,12 @@ public class DatabaseConnection{
 			else if(choose.equals("delete pay")) {
 				pay.deletePay();
 			}
+			else if(choose.equals("add pay")) {
+				pay.setPayrate();				
+			}
+			else if(choose.equals("add direct deposit")) {
+				pay.deposit();				
+			}
 			else if(choose.equals("clock out")) {
 				emp.employeeOut();
 				System.out.println("Youre out");
@@ -89,8 +95,6 @@ public class DatabaseConnection{
 			}
 			
 		}
-		//pay.deposit();
-		//pay.setPayrate();
 		//pay.findPayrate();
 		//pay.updatePay();
 		//ben.addBenefits();
