@@ -45,66 +45,16 @@ public class DatabaseConnection{
 		System.out.println("This HRIS allows you to create, read, update, and delete data in the database pertaining to employees or yourself");
 		System.out.println("--------------------------------");
 		System.out.println("Start by pressing enter,  Enjoy :)");
-		
 		Employee emp = new Employee();
-		Payroll pay = new Payroll();
-		Benefits ben = new Benefits();
-		Scanner input = new Scanner(System.in);
+		Prompt prom = new Prompt();
 		
-
 		connector();
+		
 		System.out.println("Please clock in :)");
-		emp.employeeIn();
-		
-		boolean quit = false;
-		while(!quit) {
-			
-			System.out.println("What would you like to do");
-			String choose = input.nextLine();
-			
-			if(choose.equals("add employee")) {	
-				emp.addEmployee();	
-			}
-			else if(choose.equals("find employee")) {
-				emp.findEmployee();	
-			}
-			else if(choose.equals("delete employee")) {
-				
-				emp.deleteEmployee();
-			}
-			else if(choose.equals("update employee")) {
-				
-				emp.updateEmployee();
-			}
-			else if(choose.equals("delete pay")) {
-				pay.deletePay();
-			}
-			else if(choose.equals("add pay")) {
-				pay.setPayrate();				
-			}
-			else if(choose.equals("add direct deposit")) {
-				pay.deposit();				
-			}
-			else if(choose.equals("clock out")) {
-				emp.employeeOut();
-				System.out.println("Youre out");
-				quit = true;
-			}
-			else if (choose.equals("quit")) {
-				quit = true;
-			}
-			
-		}
-		//pay.findPayrate();
-		//pay.updatePay();
-		//ben.addBenefits();
-		//ben.deleteBenefits();
-		//ben.findBenefits();
-		//ben.updateBenefits();
+	
+			emp.employeeIn();
 
-		
 	}
-
 	//connector method
 	public static void connector() {
 		Scanner input = new Scanner(System.in);
