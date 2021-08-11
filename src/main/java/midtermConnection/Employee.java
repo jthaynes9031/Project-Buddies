@@ -31,7 +31,7 @@ public class Employee{
 		try 
 		{
 		
-		String findEmployee = "SELECT * FROM employee";
+		String findEmployee = "SELECT administer, employee, isTraining employee.* FROM employee";
 		PreparedStatement statement = databaseConn.connection.prepareStatement(findEmployee);
 		ResultSet result1 = statement.executeQuery();
 		
@@ -101,6 +101,7 @@ public class Employee{
 				 System.out.println("User has been deleted");
 			 }
 			 
+			 findEmployee();
 		 }catch(Exception e){
 			 e.printStackTrace();
 		
@@ -126,6 +127,8 @@ public class Employee{
 			 if(rowsUpdated > 0) {
 				 System.out.println("User has been updated");
 			 }
+			 
+			 findEmployee();
 		 }catch(Exception e) {
 			 e.printStackTrace();
 		 }
