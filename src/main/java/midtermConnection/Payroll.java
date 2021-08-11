@@ -151,7 +151,7 @@ public class Payroll extends Employee {
 	
 	public void findPayAll() {
 		try {
-			String sql = "SELECT * FROM payroll";
+			String sql = "Select first_name, payroll.* from payroll inner join employee on employee.employee_number = payroll.employee_number;";
 			 
 			Statement statement = databaseConn.connection.createStatement();
 			ResultSet result = statement.executeQuery(sql);
@@ -159,13 +159,14 @@ public class Payroll extends Employee {
 			int count = 0;
 			 
 			while (result.next()){
+				String fname = result.getString("first_name");
 			    int employeeNum = result.getInt("employee_number");
 			    double payRate = result.getDouble("pay_rate");
 			    boolean overtime = result.getBoolean("overtime");
 			    boolean direct = result.getBoolean("direct_deposit");
 			 
-			    String output = "Employee Pay #%d: %d - %f - %b - %b";
-			    System.out.println(String.format(output, ++count, employeeNum, payRate, overtime, direct));
+			    String output = "|#%d: Employee firstname:  %-10s |  Employee number: %-10d | %-10f | %-10b | %-10b";
+			    System.out.println(String.format(output, ++count, fname, employeeNum, payRate, overtime, direct));
 			}
 			
 		}catch(SQLException e) {

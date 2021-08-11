@@ -31,16 +31,26 @@ public class Employee{
 		try 
 		{
 		
-		String findEmployee = "SELECT * FROM employee WHERE first_name = ?";
+		String findEmployee = "SELECT * FROM employee";
 		PreparedStatement statement = databaseConn.connection.prepareStatement(findEmployee);
-		System.out.println("Enter First name");
-		statement.setString(1, myObj.nextLine());
 		ResultSet result1 = statement.executeQuery();
+		
+		int count = 0;
+		
 		while(result1.next()) {
 			
-			System.out.println("what are you looking for?");
-			String find = result1.getString(myObj.nextLine());
-			System.out.println(find);	
+			String fname = result1.getString("first_name");
+			String lname = result1.getString("last_name");
+		    int employeeNum = result1.getInt("employee_number");
+		    String email = result1.getString("email");
+		    boolean att = result1.getBoolean("attendance");
+		    
+		    //String divider = "-------------------------------------------------------------------------------------------------";
+		    
+		    //System.out.println(divider);
+		    String output = "|#%d: |Employee firstname:  %s | Employee lastname: %s |Employee number: %d | %s |Clocked In: %b |";
+		    System.out.println(String.format(output, ++count, fname, lname, employeeNum, email, att));
+		    //System.out.println(divider);
 		}
 		
 		}catch (Exception e) {
