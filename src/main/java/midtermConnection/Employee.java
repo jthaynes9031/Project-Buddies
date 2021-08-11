@@ -189,11 +189,9 @@ public class Employee{
 					 DateTimeFormatter dt = DateTimeFormatter.ofPattern("HH:mm:ss");  
 					 mewtwo = LocalDateTime.now();
 					 System.out.println(dt.format(mewtwo));
-					 dTime();
-					
-
-					 
-				 }	
+					 dTime();					 
+				 }
+				 
 		 }catch(SQLException e) {
 			 e.printStackTrace();
 		 }
