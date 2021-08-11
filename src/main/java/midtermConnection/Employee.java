@@ -27,9 +27,6 @@ public class Employee{
 
 
 	
-//Andrea was there
-
-	
 	public void findEmployee() { 
 		try 
 		{
@@ -204,22 +201,7 @@ public class Employee{
 			 System.out.println(hours + " hours");
 			 System.out.println(minutes + " minutes");
 			 System.out.println((seconds + 1) + " seconds");
-		     /*   
-			 long years = ChronoUnit.YEARS.between(mew, mewtwo);
-			 long months = ChronoUnit.MONTHS.between(cTime(), eTime());
-		        long weeks = ChronoUnit.WEEKS.between(cTime(), eTime());
-		        long days = ChronoUnit.DAYS.between(cTime(), eTime());
-		        long hours = ChronoUnit.HOURS.between(cTime(), eTime());
-		        long milliseconds = ChronoUnit.MILLIS.between(cTime(), eTime());
 
-		        System.out.println(years + " years");
-		        System.out.println(months + " months");
-		        System.out.println(weeks + " weeks");
-		        System.out.println(days + " days");
-		        System.out.println(hours + " hours");
-		        System.out.println(milliseconds + " milliseconds");
-			 //System.out.println(nano + " nano");
-		        */
 		 }
 
 

@@ -3,12 +3,14 @@ package midtermConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Payroll extends Employee {
 	DatabaseConnection databaseConn = new DatabaseConnection();
-	//Employee emp = new Employee();
+	Employee emp = new Employee();
 	Scanner input = new Scanner(System.in);
+	public double payrate;
 	
 
 	//set pay rate
@@ -37,23 +39,22 @@ public class Payroll extends Employee {
 		System.out.println("");
 	}
 
-	//thursday
 	//retrieve employee pay rate
 	public void findPayrate() {
 		//find employee pay rate
-		
 		try
 		{
-			String findPayRate = "SELECT * FROM payroll WHERE employee_number = ?";
+			String findPayRate = "Select pay_rate from payroll where employee_number = ?";
 			PreparedStatement statement = databaseConn.connection.prepareStatement(findPayRate);
-			System.out.println("What is the employee_id for the pay you would like to view?");
-			statement.setString(1, myObj.nextLine());
-			ResultSet result1 = statement.executeQuery(findPayRate);
-			while(result1.next()) {
-				//System.out.println("pay rate for who");
-				String find = result1.getString(myObj.nextLine());
-				System.out.println(find);	
-			}
+			System.out.println("What is the employee number for the pay you would like to view?");
+			statement.setInt(1, myObj.nextInt());
+			ResultSet result1 = statement.executeQuery();
+			
+			
+			result1.next();
+				payrate = result1.getDouble("pay_rate");
+				System.out.println(payrate);
+
 		 	 
 		}catch(Exception e){
 		 e.printStackTrace();
@@ -148,34 +149,28 @@ public class Payroll extends Employee {
 		//benefits
 	}
 	
-	
-	
-	/*
-	 * 
-	 * 
-	 * Payroll methods go below
-	 * you know wuat to do 
-	 * 
-	 *
-	 *
-	 *		daily pay method in which subtract clock out - clock in
-			put in array of 7
-			 using loop
-			return that arrayy
-			array sum
-			return the array sum
-			run query that'll set the net_pay col
-			to array sum
+	public void findPayAll() {
+		try {
+			String sql = "SELECT * FROM payroll";
+			 
+			Statement statement = databaseConn.connection.createStatement();
+			ResultSet result = statement.executeQuery(sql);
+			 
+			int count = 0;
+			 
+			while (result.next()){
+			    int employeeNum = result.getInt("employee_number");
+			    double payRate = result.getDouble("pay_rate");
+			    boolean overtime = result.getBoolean("overtime");
+			    boolean direct = result.getBoolean("direct_deposit");
+			 
+			    String output = "Employee Pay #%d: %d - %f - %b - %b";
+			    System.out.println(String.format(output, ++count, employeeNum, payRate, overtime, direct));
+			}
 			
-			
-			weekly pay
-			add all in-da-sexies in daily payarray
-			return Integer weekly pay;
-			Array list;
-	 * 
-	 *
-	 *
-	 *
-	 *
-	*/
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
