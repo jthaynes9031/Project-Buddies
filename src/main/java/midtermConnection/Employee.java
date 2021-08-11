@@ -4,6 +4,13 @@ package midtermConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.sql.PreparedStatement;
 import java.util.Date;
 import java.util.Locale;
@@ -15,6 +22,8 @@ public class Employee{
 	
 	DatabaseConnection databaseConn = new DatabaseConnection();
 	Scanner myObj = new Scanner(System.in);
+	LocalDateTime mew;
+	LocalDateTime mewtwo;
 
 
 	
@@ -28,7 +37,7 @@ public class Employee{
 		String findEmployee = "SELECT * FROM employee WHERE first_name = ?";
 		PreparedStatement statement = databaseConn.connection.prepareStatement(findEmployee);
 		System.out.println("Enter First name");
-		statement.setString(1, myObj.next());
+		statement.setString(1, myObj.nextLine());
 		ResultSet result1 = statement.executeQuery();
 		while(result1.next()) {
 			
@@ -166,40 +175,54 @@ public class Employee{
 			 ResultSet rs = statement1.executeQuery();
 			 
 			 
-			 while(rs.next()) { 
+			 rs.next();
 				 int inOrOut = rs.getInt("attendance");
 				 
 				 if(inOrOut == 1) {
 					 System.out.println("You're In");
-					 cTime();
-
+					 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");  
+					 mew = LocalDateTime.now();
+					 System.out.println(dtf.format(mew));
 				 }
 				 if(inOrOut == 0) {
 					 System.out.println("You're out");
-					 eTime();
-					 System.out.println("Time:" + date);
+					 DateTimeFormatter dt = DateTimeFormatter.ofPattern("HH:mm:ss");  
+					 mewtwo = LocalDateTime.now();
+					 System.out.println(dt.format(mewtwo));
+					 dTime();
+					
+
+					 
 				 }	
-			 }	
 		 }catch(SQLException e) {
 			 e.printStackTrace();
 		 }
 	 }
 
-		 public int cTime() {
-			 Date startTime = new Date();
-			 int secs = (int)(startTime.getTime() / 1000 );
-			return secs;
-			 }
-		 public int eTime() {
-			 Date endTime = new Date();
-			 int sec = (int)(endTime.getTime() / 1000 );
-			return sec;
-			 }
-		 public int dTime(){
-			int dif = (eTime() - cTime());
-			return dif;
+		 public void dTime() {
+			 long hours = ChronoUnit.HOURS.between(mew, mewtwo);
+			 long minutes = ChronoUnit.MINUTES.between(mew,mewtwo);
+			 long seconds = ChronoUnit.SECONDS.between(mew,mewtwo);
+			 System.out.println(hours + " hours");
+			 System.out.println(minutes + " minutes");
+			 System.out.println((seconds + 1) + " seconds");
+		     /*   
+			 long years = ChronoUnit.YEARS.between(mew, mewtwo);
+			 long months = ChronoUnit.MONTHS.between(cTime(), eTime());
+		        long weeks = ChronoUnit.WEEKS.between(cTime(), eTime());
+		        long days = ChronoUnit.DAYS.between(cTime(), eTime());
+		        long hours = ChronoUnit.HOURS.between(cTime(), eTime());
+		        long milliseconds = ChronoUnit.MILLIS.between(cTime(), eTime());
+
+		        System.out.println(years + " years");
+		        System.out.println(months + " months");
+		        System.out.println(weeks + " weeks");
+		        System.out.println(days + " days");
+		        System.out.println(hours + " hours");
+		        System.out.println(milliseconds + " milliseconds");
+			 //System.out.println(nano + " nano");
+		        */
 		 }
-		 Locale locale = new Locale("en", "US");
-		 DateFormat dateFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
-		 String date = dateFormat.format(dTime());
+
+
 }
