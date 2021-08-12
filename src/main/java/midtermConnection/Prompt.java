@@ -13,7 +13,7 @@ public class Prompt {
 		Scanner input = new Scanner(System.in);
 		
 		
-		String divider = "===========================================================================================================================";
+		String divider = "=====================================================================================================";
 		
 		boolean quit = false;
 		while(!quit) {
@@ -46,6 +46,7 @@ public class Prompt {
 				System.out.println("find employee");
 				System.out.println("find pay info");
 				System.out.println("find benefits");
+				System.out.println("employees in training");
 				System.out.println(divider);
 			}
 			else if(choose.equals("delete")) {
@@ -94,6 +95,9 @@ public class Prompt {
 			}
 			else if(choose.equals("find pay")) {
 				pay.findPayrate();				
+			}
+			else if(choose.equals("employees in training")) {
+				fin.findEmpInTrain();
 			}
 			else if(choose.equals("find benefits")) {				
 				ben.findBenefits();
