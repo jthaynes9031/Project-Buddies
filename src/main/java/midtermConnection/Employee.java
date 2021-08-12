@@ -81,7 +81,7 @@ public class Employee{
 				System.out.println("New user was added");
 			}
 			
-			
+			 findEmployee();
 			}catch (Exception e){
 				e.printStackTrace();
 				

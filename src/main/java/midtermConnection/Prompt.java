@@ -138,4 +138,8 @@ public class Prompt {
 			}
 		}
 	}
+	public void PromptA() {
+		//after differentiating between access of employees vs administrators, Primary Key will get employee clock in
+		//in employee prompt, able to view all employee information for every aspect able to be viewed by administrator and employee
+	}
 }
