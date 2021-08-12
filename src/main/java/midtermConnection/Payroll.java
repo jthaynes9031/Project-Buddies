@@ -60,7 +60,6 @@ public class Payroll extends Employee {
 		 e.printStackTrace();
 		}
 	}
-	//thursday possible
 	//net pay
 	public void netPay() {
 		
@@ -69,7 +68,6 @@ public class Payroll extends Employee {
 		
 	}
 	
-	//thursday
 	// Update Pay
 	public void updatePay() {
 		DatabaseConnection bitsConn = new DatabaseConnection();
@@ -96,7 +94,6 @@ public class Payroll extends Employee {
 	 bits.close();// ability to update pay rate
 	}
 
-	//thursday(remedial gal)
 	//delete Pay
 	public void deletePay() {
 		
@@ -117,9 +114,6 @@ public class Payroll extends Employee {
 		 e.printStackTrace();
 		}
 	}
-	
-	
-	//thursday(marquez)
 	//direct deposit boolean
 	public void deposit() {
 		

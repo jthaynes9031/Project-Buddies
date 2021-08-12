@@ -15,10 +15,10 @@ public class Fin {
 	*/
 	
 	public void addPosition() {
-		String posi = "Insert Into positions (administer, employee, employee_number) values(?,?,?)";
 		
 		try {
 			
+			String posi = "Insert Into positions (administer, employee, employee_number) values(?,?,?)";
 			PreparedStatement statement = databaseConn.connection.prepareStatement(posi);
 			
 			System.out.println("is employee a manager if not type false");
@@ -26,8 +26,13 @@ public class Fin {
 			System.out.println("if you typed false on the previous question type 'true' here");
 			statement.setBoolean(2, input.nextBoolean());
 			System.out.println("type employee number you would like to apply position to");
-			statement.setInt(4,input.nextInt());
+			statement.setInt(3,input.nextInt());
 			
+			int rowsInserted = statement.executeUpdate();
+			 
+			if(rowsInserted > 0 ) {
+				System.out.println("Employee is in Training");
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -35,10 +40,10 @@ public class Fin {
 	}
 	
 	public void addTraining() {
-		String train = "Insert into training (isTraining, employee_number) values(?,?)";
 		
 		try {
 			
+			String train = "Insert into training (isTraining,employee_number) values(?,?)";
 			PreparedStatement statement = databaseConn.connection.prepareStatement(train);
 			
 			System.out.println("is employee training? if so type true is not type false");
@@ -46,16 +51,21 @@ public class Fin {
 			System.out.println("insert employee number of who is training");
 			statement.setInt(2, input.nextInt());
 			
+			int rowsInserted = statement.executeUpdate();
+			 
+			if(rowsInserted > 0 ) {
+				System.out.println("New user was added");
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void updateTraining() {
-		String uTrain = "Update training set isTraining = ? where employee_number = ?";
 	
 		try {
 			
+			String uTrain = "Update training set isTraining = ? where employee_number = ?";
 			PreparedStatement statement = databaseConn.connection.prepareStatement(uTrain);
 			System.out.println("is employee training type true if not type false");
 			statement.setBoolean(1, input.nextBoolean());
@@ -68,10 +78,10 @@ public class Fin {
 	}
 	
 	public void updatePosition() {
-		String uPosi = "Update positions set administer = ? employee = ? where employee_number = ?";
 		
 		try {
 			
+			String uPosi = "Update positions set administer = ? employee = ? where employee_number = ?";
 			PreparedStatement statement = databaseConn.connection.prepareStatement(uPosi);
 			System.out.println("is employee a manager");
 			statement.setBoolean(1, input.nextBoolean());
@@ -112,9 +122,9 @@ public class Fin {
 	}
 	
 	public void addPerformance() {
-		String Sql = "Insert into performance (employee_num, performance) values(?,?)";
 		
 		try {
+			String Sql = "Insert into performance (employee_num, performance) values(?,?)";
 			PreparedStatement statement = databaseConn.connection.prepareStatement(Sql);
 			
 			System.out.println("type the employee number we're giving a performance review for");
@@ -127,5 +137,13 @@ public class Fin {
 		}
 	}
 	
-	
+	public void performanceTable() {
+		
+	}
+	public void positionTable() {
+		
+	}
+	public void trainingTable() {
+		
+	}
 }
