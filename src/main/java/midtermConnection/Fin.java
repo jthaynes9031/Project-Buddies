@@ -56,6 +56,8 @@ public class Fin {
 			if(rowsInserted > 0 ) {
 				System.out.println("New user was added");
 			}
+			
+			findEmpInTrain();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,6 +74,13 @@ public class Fin {
 			System.out.println("type employee number");
 			statement.setInt(2, input.nextInt());
 			
+			int rowsInserted = statement.executeUpdate();
+			 
+			if(rowsInserted > 0 ) {
+				System.out.println("Training was updated");
+			}
+			
+			findEmpInTrain();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -132,6 +141,14 @@ public class Fin {
 			System.out.println("insert number between 1 - 5, 1 meaning poor, 5 meaning excellent");
 			statement.setInt(2, input.nextInt());
 			
+			
+			int rowsInserted = statement.executeUpdate();
+			 
+			if(rowsInserted > 0 ) {
+				System.out.println("Performance was add to user");
+			}
+			
+			performanceTable();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -139,11 +156,34 @@ public class Fin {
 	
 	public void performanceTable() {
 		
-	}
-	public void positionTable() {
+		try {
+			
+			String findPerf = "Select first_name, last_name, performance.* from performance inner join employee on employee.employee_number = performance.employee_number";
+			Statement statement = databaseConn.connection.createStatement();
+			ResultSet result = statement.executeQuery(findPerf);
+			 
+			int count = 0;
+			System.out.println("-----------------------------------------------------------------------------");
+			System.out.printf("%10s %10s %10s %10s %10s", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "PERFORMANCE");
+			System.out.println();
+			System.out.println("-----------------------------------------------------------------------------");
+			while (result.next()){
+				String fname = result.getString("first_name");
+				String lname = result.getString("last_name");
+			    int employeeNum = result.getInt("employee_number");
+			    int performance = result.getInt("performance");
+			 
+			    String output = "|#%d:| %-10s | %-10s | %-10d | %-10d";
+			    System.out.println(String.format(output, ++count, fname, lname, employeeNum, performance));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
-	public void trainingTable() {
+	public void positionTable() {
 		
 	}
 }
