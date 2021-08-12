@@ -69,9 +69,7 @@ public class DatabaseConnection{
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 				DriverManager.getConnection(url, user, password);
-				    System.out.println("Welcome");
-				    //System.out.println("what would you like to do");
-				    //input.nextLine();
+				    //System.out.println("Welcome");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 	}catch (SQLException throwables) {

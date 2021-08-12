@@ -80,7 +80,7 @@ public class Payroll extends Employee {
 		 			 
 		
 		 System.out.println("What do we set pay rate to?");
-		 statement.setInt(1, bits.nextInt());
+		 statement.setDouble(1, bits.nextDouble());
 		 System.out.println("Do you want direct deposit?");
 		 statement.setBoolean(2, bits.nextBoolean());
 		 System.out.println("Enter your empoloyee number for update");

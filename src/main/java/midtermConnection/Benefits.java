@@ -46,7 +46,6 @@ public class Benefits extends DatabaseConnection{
 		{
 			e.printStackTrace();
 		}
-		bits.close();
 	}
 	public void addBenefits() 
 	{
@@ -80,7 +79,6 @@ public class Benefits extends DatabaseConnection{
 		{
 			e.printStackTrace();
 		}
-		bits.close();
 	}
 	
 	public void deleteBenefits() {
@@ -90,8 +88,6 @@ public class Benefits extends DatabaseConnection{
 		{
 			String deleteBenefits = "DELETE FROM benefits WHERE employee_number = ?";
 			PreparedStatement statement = bitsConn.connection.prepareStatement(deleteBenefits);
-			//System.out.println("What is your employee number");
-			//statement.setString(1, bits.nextLine());
 			System.out.println("Enter the employee number you want to delete benefits for.");
 			statement.setInt(1, bits.nextInt());
 			int rowsDeleted = statement.executeUpdate();
@@ -105,7 +101,6 @@ public class Benefits extends DatabaseConnection{
 		{
 			e.printStackTrace();
 		}
-		bits.close();
 			
 		}
 	public void updateBenefits() {
@@ -134,8 +129,5 @@ public class Benefits extends DatabaseConnection{
 		 }catch(Exception e) {
 			 e.printStackTrace();
 		 }
-		 bits.close();
 	 }
 }
-
-// test time 6
