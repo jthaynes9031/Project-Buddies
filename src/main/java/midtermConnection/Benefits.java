@@ -2,6 +2,7 @@ package midtermConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Benefits extends DatabaseConnection{
@@ -19,16 +20,25 @@ public class Benefits extends DatabaseConnection{
 		
 		try
 		{
-			String findBenefits = "Select * FROM benefits WHERE employee_number =?";
-			PreparedStatement statement = bitsConn.connection.prepareStatement(findBenefits);
-			System.out.println("Enter your employee number: ");
-			statement.setString(1, bits.nextLine());
-			ResultSet result1 = statement.executeQuery();
+			String findBenefits = "Select * FROM benefits";
+			Statement statement = bitsConn.connection.createStatement();
+			ResultSet result1 = statement.executeQuery(findBenefits);
+			System.out.println("-----------------------------------------------------------------------------");
+			System.out.printf("%10s %10s %10s %10s %10s %10s", "FIRST NAME", "EMPLOYEE NUMBER", "401K", "HEALTH INSURANCE", "PAID LEAVE","DENTAL INSURANCE");
+			System.out.println();
+			System.out.println("-----------------------------------------------------------------------------");
+			
+			int count = 0;
 			while(result1.next()) {
-				System.out.println("What benefit do you need to check?");
-				String search = result1.getString(bits.nextLine());
-				System.out.println("1 means you have the benefit, 0 means you don't have the benefit");
-				System.out.println(search);
+				String fname = result1.getString("first_name");
+			    int employeeNum = result1.getInt("employee_number");
+			    boolean fook = result1.getBoolean("FourohONEK");
+			    boolean healI = result1.getBoolean("HealthInsurance");
+			    boolean paiL = result1.getBoolean("PaidLeave");
+			    boolean dentI = result1.getBoolean("DentalInsurance");
+			    
+			    String output = "|#%d:| %-10s | %-10d | %-10b| %-10b | %-10b | %-10b|";
+			    System.out.println(String.format(output, ++count, fname, employeeNum, fook, healI, paiL, dentI));
 				
 			}
 		}
