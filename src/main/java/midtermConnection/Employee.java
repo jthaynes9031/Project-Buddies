@@ -31,12 +31,16 @@ public class Employee{
 		try 
 		{
 		
-		String findEmployee = "SELECT administer, employee, isTraining employee.* FROM employee";
+		String findEmployee = "SELECT * FROM employee";
 		PreparedStatement statement = databaseConn.connection.prepareStatement(findEmployee);
 		ResultSet result1 = statement.executeQuery();
 		
 		int count = 0;
 		
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.printf("%10s %10s %10s %10s %10s %10s", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "EMAIL", "CLOCKED IN");
+		System.out.println();
+		System.out.println("-----------------------------------------------------------------------------");
 		while(result1.next()) {
 			
 			String fname = result1.getString("first_name");
@@ -45,12 +49,8 @@ public class Employee{
 		    String email = result1.getString("email");
 		    boolean att = result1.getBoolean("attendance");
 		    
-		    //String divider = "-------------------------------------------------------------------------------------------------";
-		    
-		    //System.out.println(divider);
-		    String output = "|#%d: |Employee firstname:  %s | Employee lastname: %s |Employee number: %d | %s |Clocked In: %b |";
+		    String output = "|#%d: | %10s | %10s | %10d | %10s | %10b |";
 		    System.out.println(String.format(output, ++count, fname, lname, employeeNum, email, att));
-		    //System.out.println(divider);
 		}
 		
 		}catch (Exception e) {

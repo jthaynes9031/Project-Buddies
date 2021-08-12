@@ -158,6 +158,10 @@ public class Payroll extends Employee {
 			 
 			int count = 0;
 			 
+			System.out.println("-----------------------------------------------------------------------------");
+			System.out.printf("%10s %10s %10s %10s %10s %10s", "COUNT", "FIRST NAME", "EMPLOYEE NUMBER", "PAYRATE", "OVERTIME", "DIRECT DEPOSIT");
+			System.out.println();
+			System.out.println("-----------------------------------------------------------------------------");
 			while (result.next()){
 				String fname = result.getString("first_name");
 			    int employeeNum = result.getInt("employee_number");
@@ -165,7 +169,7 @@ public class Payroll extends Employee {
 			    boolean overtime = result.getBoolean("overtime");
 			    boolean direct = result.getBoolean("direct_deposit");
 			 
-			    String output = "|#%d: Employee firstname:  %-10s |  Employee number: %-10d | %-10f | %-10b | %-10b";
+			    String output = "|#%d:| %-10s | %-10d | %-10f | %-10b | %-10b";
 			    System.out.println(String.format(output, ++count, fname, employeeNum, payRate, overtime, direct));
 			}
 			

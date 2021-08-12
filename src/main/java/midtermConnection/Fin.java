@@ -93,13 +93,16 @@ public class Fin {
 			ResultSet result = statement.executeQuery(findTrain);
 			 
 			int count = 0;
-			 
+			System.out.println("-----------------------------------------------------------------------------");
+			System.out.printf("%10s %10s %10s %10s", "COUNT", "FIRST NAME", "EMPLOYEE NUMBER", "TRAINING");
+			System.out.println();
+			System.out.println("-----------------------------------------------------------------------------");
 			while (result.next()){
 				String fname = result.getString("first_name");
 			    int employeeNum = result.getInt("employee_number");
 			    boolean train = result.getBoolean("isTraining");
 			 
-			    String output = "|#%d: Employee firstname:  %-10s |  Employee number: %-10d | %-10b";
+			    String output = "|#%d:| %-10s | %-10d | %-10b";
 			    System.out.println(String.format(output, ++count, fname, employeeNum, train));
 			}
 			

@@ -21,11 +21,13 @@ public class Prompt {
 			String choose = input.nextLine();
 			
 			
-			if(choose.equals("instructions")) {				
+			if(choose.equals("instructions")) {	
+				System.out.println(divider);
 				System.out.println("type 'add' to insert into database");
 				System.out.println("type 'find' to search database");
 				System.out.println("type 'update' to update items in database"); 
 				System.out.println("type 'delete' to delete items in database");
+				System.out.println(divider);
 			}
 
 			
