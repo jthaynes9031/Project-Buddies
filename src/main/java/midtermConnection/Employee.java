@@ -38,7 +38,7 @@ public class Employee{
 		int count = 0;
 		
 		System.out.println("-----------------------------------------------------------------------------");
-		System.out.printf("%10s %10s %10s %10s %10s %10s", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "EMAIL", "CLOCKED IN");
+		System.out.printf("%5s %10s %10s %10s %10s %10s", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "EMAIL", "CLOCKED IN");
 		System.out.println();
 		System.out.println("-----------------------------------------------------------------------------");
 		while(result1.next()) {
