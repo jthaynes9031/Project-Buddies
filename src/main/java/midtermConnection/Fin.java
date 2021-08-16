@@ -7,13 +7,20 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class Fin {
+	
+	/*
+	 * instantiating database connection object
+	 * as well setting Scanner as an Object
+	 */
 	DatabaseConnection databaseConn = new DatabaseConnection();
 	Scanner input = new Scanner(System.in);
 	
+
 	/*
-	 this class is for performance,training and positions 
-	*/
-	
+	 * adding position to employee
+	 * might be deleted 
+	 * when going through logistics of the application
+	 */
 	public void addPosition() {
 		
 		try {
@@ -39,6 +46,11 @@ public class Fin {
 		
 	}
 	
+	/*
+	 * adding employee to the training table
+	 * will possibly delete 
+	 * due to new research in SQL
+	 */
 	public void addTraining() {
 		
 		try {
