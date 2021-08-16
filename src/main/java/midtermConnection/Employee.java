@@ -40,7 +40,7 @@ public class Employee{
 		System.out.println("-------------------------------------------------------------------------------------------");
 		System.out.printf("%6s %11s %12s %18s %16s %21s", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "EMAIL", "CLOCKED IN");
 		System.out.println();
-		System.out.println("+------------------------------------------------------------------------------------------");
+		System.out.println("-------------------------------------------------------------------------------------------");
 		while(result1.next()) {
 			
 			String fname = result1.getString("first_name");
