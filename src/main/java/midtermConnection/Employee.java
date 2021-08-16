@@ -91,10 +91,10 @@ public class Employee{
 	 
 	 public void deleteEmployee() {
 		 try {
-			 String deleteEmployee = " DELETE FROM employee WHERE first_name = ?";
+			 String deleteEmployee = " DELETE FROM employee WHERE employee_number = ?";
 			 PreparedStatement statement = databaseConn.connection.prepareStatement(deleteEmployee);
-			 System.out.println("What is the first name of the employee that you would like to delete");
-			 statement.setString(1, myObj.nextLine());
+			 System.out.println("What is the employee number you want to delete");
+			 statement.setInt(1, myObj.nextInt());
 			 int rowsDeleted = statement.executeUpdate();
 			 
 			 if(rowsDeleted > 0) {

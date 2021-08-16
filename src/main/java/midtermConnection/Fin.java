@@ -184,6 +184,31 @@ public class Fin {
 		
 	}
 	public void positionTable() {
-		
+		try {
+			
+			String findPerf = "Select first_name, last_name, performance.* from performance inner join employee on employee.employee_number = performance.employee_number";
+			Statement statement = databaseConn.connection.createStatement();
+			ResultSet result = statement.executeQuery(findPerf);
+			 
+			int count = 0;
+			System.out.println("-----------------------------------------------------------------------------");
+			System.out.printf("%10s %10s %10s %10s %10s %10S", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "MANAGER", "EMPLOYEE");
+			System.out.println();
+			System.out.println("-----------------------------------------------------------------------------");
+			while (result.next()){
+				String fname = result.getString("first_name");
+				String lname = result.getString("last_name");
+			    int employeeNum = result.getInt("employee_number");
+			    boolean admin  = result.getBoolean("administer");
+			    boolean emp = result.getBoolean("employee");
+			 
+			    String output = "|#%d:| %-10s | %-10s | %-10d | %-10b | %-10b|";
+			    System.out.println(String.format(output, ++count, fname, lname, employeeNum, admin, emp));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
+	
 }
