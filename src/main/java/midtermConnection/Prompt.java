@@ -3,25 +3,30 @@ package midtermConnection;
 import java.util.Scanner;
 
 public class Prompt {
-
 	
+	/*
+	 * objects and global variables for this class
+	 */
+	Employee emp = new Employee();
+	Payroll pay = new Payroll();
+	Benefits ben = new Benefits();
+	Fin fin = new Fin();
+	Scanner input = new Scanner(System.in);
+	String divider = "=====================================================================================================";
+	String choose = input.nextLine();
+
+	/*
+	 * This method is the method for managers
+	 */
 	public void promptM() {
-		Employee emp = new Employee();
-		Payroll pay = new Payroll();
-		Benefits ben = new Benefits();
-		Fin fin = new Fin();
-		Scanner input = new Scanner(System.in);
 		
-		
-		String divider = "=====================================================================================================";
 		
 		boolean quit = false;
 		while(!quit) {
-			System.out.println("type instructions if youre new");
-			String choose = input.nextLine();
+			System.out.println("type 'help' for instructions");
 			
 			
-			if(choose.equals("instructions")) {	
+			if(choose.equals("help")) {	
 				System.out.println(divider);
 				System.out.println("type 'add' to insert into database");
 				System.out.println("type 'find' to search database");
@@ -138,9 +143,48 @@ public class Prompt {
 			}
 		}
 	}
-	public void PromptA() {
-		//after differentiating between access of employees vs administrators, Primary Key will get employee clock in
-		//in employee prompt, able to view all employee information for every aspect able to be viewed by administrator and employee
 	
+	
+	/*
+	 * after differentiating between access of employees vs administrators, Primary Key will get employee clock in
+	 * prompt for employee 
+	 * limits what they can do in the database , based off they're role
+	 * in employee prompt, able to view all employee information for every aspect able to be viewed by administrator and employee
+	 */
+	public void PromptA() {
+		
+		boolean quit = false;
+		while(!quit) {
+			System.out.println("type 'help' if you need help navigating");
+			
+			
+			if(choose.equals("help")) {	
+				System.out.println(divider);
+				System.out.println("type 'find' to search database");
+				System.out.println("type 'update' to update items in database"); 
+				System.out.println(divider);
+			}
+			else if(choose.equals("find")) {
+				System.out.println("type either one of these commands");
+				System.out.println(divider);
+				System.out.println("find me");
+				System.out.println("find my pay info");
+				System.out.println("find benefits");
+				System.out.println("training info");
+				System.out.println(divider);
+			}
+			else if(choose.equals("update")) {
+				System.out.println("type either one of these commands");
+				System.out.println(divider);
+				System.out.println("update my info");
+			}
+			else if(choose.equals("find me")) {
+				emp.specFind();
+			}
+			else if(choose.equals("update my info")) {
+				emp.specUpdate();
+			}
+		}
+		
 	}
 }

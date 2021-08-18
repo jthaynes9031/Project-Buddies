@@ -19,11 +19,15 @@ import java.util.Scanner;
 
 public class Employee{
 	
-	
+	/*
+	 * global variables
+	 */
 	DatabaseConnection databaseConn = new DatabaseConnection();
+	Fin fin = new Fin();
 	Scanner myObj = new Scanner(System.in);
 	LocalDateTime mew;
 	LocalDateTime mewtwo;
+	int employeeNuNu;
 
 
 	
@@ -58,7 +62,7 @@ public class Employee{
 	}	
 }
 	
-	public void addEmployee() {
+	 public void addEmployee() {
 		 try 
 			{			
 		    String addEmployee = "INSERT INTO employee (first_name, last_name, email, employee_number) VALUES (?, ?, ?, ?)";
@@ -107,6 +111,7 @@ public class Employee{
 		
 		 }
 	 }
+	 
 	 public void updateEmployee() {
 		 try {
 			String updateEmployee = "UPDATE employee SET first_name = ?, last_name = ?, email = ? WHERE employee_number = ?";
@@ -135,7 +140,76 @@ public class Employee{
 		 
 	 }
 	 
-	 //specific SQL Queries
+	 /*
+	  * employee specific update method
+	  * will only allow for the employee to update they're data and only they're dats
+	  * security measure
+	  */
+	 public void specUpdate() {
+		 try {
+				String updateEmployee = "UPDATE employee SET first_name = ?, last_name = ?, email = ? WHERE employee_number =" + employeeNuNu;
+				 PreparedStatement statement = databaseConn.connection.prepareStatement(updateEmployee);
+				 			 
+				 //System.out.println("Follow prompt below: ");
+				// myObj.next();
+				 System.out.println("Keep first name or update first name to: ");
+				 statement.setString(1, myObj.next());
+				 System.out.println("Keep last name or update  last name to: ");
+				 statement.setString(2, myObj.next());
+				 System.out.println("Keep email or update email to:");
+				 statement.setString(3, myObj.next());
+				 int rowsUpdated = statement.executeUpdate();
+				 
+				 if(rowsUpdated > 0) {
+					 System.out.println("User has been updated");
+				 }
+				 
+				 findEmployee();
+			 }catch(Exception e) {
+				 e.printStackTrace();
+			 }
+	 }
+	 
+	 /*
+	  * shows specific employee info
+	  */
+	 public void specFind() {
+		 try 
+			{
+			
+			String findEmployee = "SELECT * FROM employee Where =" + employeeNuNu;
+			PreparedStatement statement = databaseConn.connection.prepareStatement(findEmployee);
+			ResultSet result1 = statement.executeQuery();
+			
+			int count = 0;
+			
+			System.out.println("-------------------------------------------------------------------------------------------");
+			System.out.printf("%6s %11s %12s %18s %16s %21s", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "EMAIL", "CLOCKED IN");
+			System.out.println();
+			System.out.println("+------------------------------------------------------------------------------------------");
+			while(result1.next()) {
+				
+				String fname = result1.getString("first_name");
+				String lname = result1.getString("last_name");
+			    int employeeNum = result1.getInt("employee_number");
+			    String email = result1.getString("email");
+			    boolean att = result1.getBoolean("attendance");
+			    
+			    String output = "|#%1d:  | %10s | %11s | %10d      | %23s | %10b |\n";
+			    System.out.printf(output, ++count, fname, lname, employeeNum, email, att);
+			}
+			
+			}catch (Exception e) {
+				e.printStackTrace();			
+		}	
+	 }
+	 
+	 
+	 /*
+	  * THESE ARE ALL METHODS FOR OUR TIMING FUNCTION
+	  * THE MAIN SOURCE OF WHAT MAKES OUR PROGRAM SMOOTH
+	  * AND PRETTY COOL
+	  */
 	 public void employeeIn() {
 		 
 		 try
@@ -175,7 +249,7 @@ public class Employee{
 		 }
 	 }
 	 
-		 public void attCheck() {
+	 public void attCheck() {
 		Prompt prom = new Prompt();
 		 String attendance = "SELECT * FROM employee WHERE employee_number = ? ";
 		 try {
@@ -188,6 +262,7 @@ public class Employee{
 			 
 			 rs.next();
 				 int inOrOut = rs.getInt("attendance");
+				 employeeNuNu = rs.getInt("employee_number");
 				 
 				 if(inOrOut == 1) {
 					 System.out.println("You're In");
@@ -195,7 +270,7 @@ public class Employee{
 					 mew = LocalDateTime.now();
 					 System.out.println(dtf.format(mew));
 					 System.out.println("=======================THANK YOU FOR CLOCKING IN PRESS ENTER==========================");
-					 prom.promptM();
+					 fin.findEmployeePosition();
 					 
 				 }
 				 if(inOrOut == 0) {
@@ -211,7 +286,7 @@ public class Employee{
 		 }
 	 }
 
-		 public void dTime() {
+	 public void dTime() {
 			 long hours = ChronoUnit.HOURS.between(mew, mewtwo);
 			 long minutes = ChronoUnit.MINUTES.between(mew,mewtwo);
 			 long seconds = ChronoUnit.SECONDS.between(mew,mewtwo);
@@ -220,6 +295,5 @@ public class Employee{
 			 System.out.println((seconds + 1) + " seconds");
 
 		 }
-
 
 }

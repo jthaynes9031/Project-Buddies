@@ -12,6 +12,8 @@ public class Fin {
 	 * instantiating database connection object
 	 * as well setting Scanner as an Object
 	 */
+	Employee em = new Employee();
+	Prompt prom = new Prompt();
 	DatabaseConnection databaseConn = new DatabaseConnection();
 	Scanner input = new Scanner(System.in);
 	
@@ -44,6 +46,40 @@ public class Fin {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/*
+	 * method used for finding if user is a manager or regular employee
+	 * re-gu-la  em-ploy-yeeeyeyeyeye
+	 * will be used in the clock in method at the start of the program
+	 * and will further push security measures
+	 */
+	public void findEmployeePosition() {
+		
+		
+		
+		try {
+			
+			String findPosi = "Select * from positions Where employee =" + em.employeeNuNu;
+			PreparedStatement statement = databaseConn.connection.prepareStatement(findPosi);
+			statement.setInt(1, input.nextInt());
+			ResultSet rs = statement.executeQuery();
+			
+			 rs.next();
+			 int man = rs.getInt("administer");
+			 int emp = rs.getInt("employee");
+			 
+			 if(man == 1 && emp == 0) {
+				 prom.promptM();
+			 }
+			 else if (man == 0 && emp == 1) {
+				 prom.PromptA();
+			 }
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
@@ -116,31 +152,6 @@ public class Fin {
 		}
 	}
 	
-	public void findEmpInTrain() {
-		try {
-			
-			String findTrain = "Select first_name, training.* from training inner join employee on employee.employee_number = training.employee_number where istraining = 1";
-			Statement statement = databaseConn.connection.createStatement();
-			ResultSet result = statement.executeQuery(findTrain);
-			 
-			int count = 0;
-			System.out.println("-----------------------------------------------------------------------------");
-			System.out.printf("%10s %10s %10s %10s", "COUNT", "FIRST NAME", "EMPLOYEE NUMBER", "TRAINING");
-			System.out.println();
-			System.out.println("-----------------------------------------------------------------------------");
-			while (result.next()){
-				String fname = result.getString("first_name");
-			    int employeeNum = result.getInt("employee_number");
-			    boolean train = result.getBoolean("isTraining");
-			 
-			    String output = "|#%d:| %-10s | %-10d | %-10b";
-			    System.out.println(String.format(output, ++count, fname, employeeNum, train));
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void addPerformance() {
 		
@@ -223,4 +234,30 @@ public class Fin {
 		}
 	}
 	
+	public void findEmpInTrain() {
+		try {
+			
+			String findTrain = "Select first_name, training.* from training inner join employee on employee.employee_number = training.employee_number where istraining = 1";
+			Statement statement = databaseConn.connection.createStatement();
+			ResultSet result = statement.executeQuery(findTrain);
+			
+			int count = 0;
+			System.out.println("-----------------------------------------------------------------------------");
+			System.out.printf("%10s %10s %10s %10s", "COUNT", "FIRST NAME", "EMPLOYEE NUMBER", "TRAINING");
+			System.out.println();
+			System.out.println("-----------------------------------------------------------------------------");
+			while (result.next()){
+				String fname = result.getString("first_name");
+				int employeeNum = result.getInt("employee_number");
+				boolean train = result.getBoolean("isTraining");
+				
+				String output = "|#%d:| %-10s | %-10d | %-10b";
+				System.out.println(String.format(output, ++count, fname, employeeNum, train));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
