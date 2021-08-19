@@ -178,12 +178,6 @@ public class Prompt {
 				System.out.println(divider);
 				System.out.println("update my info");
 			}
-			else if(choose.equals("find me")) {
-				emp.specFind();
-			}
-			else if(choose.equals("update my info")) {
-				emp.specUpdate();
-			}
 		}
 		
 	}
