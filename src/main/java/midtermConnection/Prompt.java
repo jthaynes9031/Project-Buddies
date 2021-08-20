@@ -13,16 +13,16 @@ public class Prompt {
 	Fin fin = new Fin();
 	Scanner input = new Scanner(System.in);
 	String divider = "=====================================================================================================";
-	String choose = input.nextLine();
 
 	/*
 	 * This method is the method for managers
 	 */
 	public void promptM() {
 		
-		
 		boolean quit = false;
 		while(!quit) {
+			
+			String choose = input.nextLine();
 			System.out.println("type 'help' for instructions");
 			
 			
@@ -153,6 +153,7 @@ public class Prompt {
 	 */
 	public void PromptA() {
 		
+		String choose = input.nextLine();
 		boolean quit = false;
 		while(!quit) {
 			System.out.println("type 'help' if you need help navigating");

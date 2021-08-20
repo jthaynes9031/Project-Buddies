@@ -47,13 +47,14 @@ public class DatabaseConnection{
 		System.out.println(divider);
 		System.out.println("Start by pressing enter,  Enjoy :)");
 		Employee emp = new Employee();
-		Prompt prom = new Prompt();
+		clock clock = new clock();
+		//Prompt prom = new Prompt();
 		
 		connector();
 		
 		System.out.println("Please clock in :)");
 	
-			emp.employeeIn();
+			clock.employeeIn();
 
 	}
 	//connector method

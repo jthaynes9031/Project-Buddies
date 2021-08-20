@@ -184,6 +184,7 @@ public class Employee{
 	 }
 	 
 	 public void attCheck() {
+		 Prompt prom = new Prompt();
 		 String attendance = "SELECT * FROM employee WHERE employee_number = ? ";
 		 try {
 			 
@@ -203,7 +204,7 @@ public class Employee{
 					 mew = LocalDateTime.now();
 					 System.out.println(dtf.format(mew));
 					 System.out.println("=======================THANK YOU FOR CLOCKING IN PRESS ENTER==========================");
-
+					 prom.promptM();
 					 
 				 }
 				 if(inOrOut == 0) {

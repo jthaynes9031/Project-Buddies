@@ -86,15 +86,7 @@ public class clock {
 					 mew = LocalDateTime.now();
 					 System.out.println(dtf.format(mew));
 					 System.out.println("=======================THANK YOU FOR CLOCKING IN PRESS ENTER " + employeeNuNu + "==========================");
-					 if(man == 1 & em == 0) {
-						 prom.promptM();
-					 }
-					 else if (man == 0 && em == 1) {
-						 prom.PromptA();
-					 }
-					 else {
-						 System.out.println("employee doesnt have a position");
-					 }
+					 prom.promptM();
 					 
 				 }
 				 if(inOrOut == 0) {
