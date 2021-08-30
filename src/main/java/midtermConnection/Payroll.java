@@ -88,10 +88,10 @@ public class Payroll extends Employee {
 		 if(rowsUpdated > 0) {
 			 System .out.println("Benefits has been updated");
 		 }
+		 findPayAll();
 	 }catch(Exception e) {
 		 e.printStackTrace();
 	 }
-	 bits.close();// ability to update pay rate
 	}
 
 	//delete Pay
@@ -134,7 +134,6 @@ public class Payroll extends Employee {
 		}catch(Exception e) {
 			 e.printStackTrace();
 		 }
-		 input.close();
 	}
 	
 	//gross Pay

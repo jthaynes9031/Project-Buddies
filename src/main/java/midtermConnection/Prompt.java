@@ -22,16 +22,16 @@ public class Prompt {
 		boolean quit = false;
 		while(!quit) {
 			
-			String choose = input.nextLine();
 			System.out.println("type 'help' for instructions");
+			String choose = input.nextLine();
 			
 			
 			if(choose.equals("help")) {	
 				System.out.println(divider);
-				System.out.println("type 'add' to insert into database");
-				System.out.println("type 'find' to search database");
-				System.out.println("type 'update' to update items in database"); 
-				System.out.println("type 'delete' to delete items in database");
+				System.out.println("type 'add' to add users and other info");
+				System.out.println("type 'find' to search");
+				System.out.println("type 'update' to update employees and other info"); 
+				System.out.println("type 'delete' to delete info");
 				System.out.println(divider);
 			}
 
@@ -51,7 +51,7 @@ public class Prompt {
 				System.out.println("type either one of these commands");
 				System.out.println(divider);
 				System.out.println("find employee");
-				System.out.println("find pay info");
+				System.out.println("find Pay info");
 				System.out.println("find benefits");
 				System.out.println("employees in training");
 				System.out.println(divider);
@@ -68,7 +68,7 @@ public class Prompt {
 				System.out.println("type either one of these commands");
 				System.out.println(divider);
 				System.out.println("update employee");
-				System.out.println("update pay info");
+				System.out.println("update Pay info");
 				System.out.println("update benefits");
 				System.out.println("update performance");
 				System.out.println("update position");
@@ -109,6 +109,12 @@ public class Prompt {
 			else if(choose.equals("find benefits")) {				
 				ben.findBenefits();
 			}
+			else if(choose.equals("find performance")) {
+				fin.performanceTable();
+			}
+			else if(choose.equals("find employee performance")) {
+				fin.speciEmpPerformance();
+			}
 			else if(choose.equals("update employee")) {
 				emp.updateEmployee();
 			}
@@ -123,6 +129,9 @@ public class Prompt {
 			}
 			else if(choose.equals("update benefits")) {				
 				ben.updateBenefits();
+			}
+			else if(choose.equals("update performance")) {
+				fin.updatePerformance();
 			}
 			else if(choose.equals("delete pay")) {
 				pay.deletePay();

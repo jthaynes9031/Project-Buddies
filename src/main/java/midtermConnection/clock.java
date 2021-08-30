@@ -75,10 +75,10 @@ public class clock {
 			 
 			 
 			 rs.next();
+			 employeeNuNu = rs.getInt("employee_number");
 				 int inOrOut = rs.getInt("attendance");
 				 int man = rs.getInt("administer");
 				 int em = rs.getInt("employee");
-				 employeeNuNu = rs.getInt("employee_number");
 				 
 				 if(inOrOut == 1) {
 					 System.out.println("You're In");

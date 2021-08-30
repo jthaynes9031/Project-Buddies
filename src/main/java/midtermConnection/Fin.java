@@ -1,9 +1,12 @@
 package midtermConnection;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Fin {
@@ -141,6 +144,25 @@ public class Fin {
 			e.printStackTrace();
 		}
 	}
+	public void updatePerformance() {
+		try {
+			String uSql = "Update performance SET performance = ? Where employee_number = ?";
+			PreparedStatement statement = databaseConn.connection.prepareStatement(uSql);
+			
+			System.out.println("enter employee number you're reviewing");
+			statement.setInt(2,input.nextInt());
+			System.out.println("How did the employee Perform");
+			statement.setInt(1, input.nextInt());
+			
+			int rowsInserted = statement.executeUpdate();
+			
+			if(rowsInserted > 0) {
+				System.out.println("Performance was updated");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void performanceTable() {
 		
@@ -225,4 +247,38 @@ public class Fin {
 		}
 		
 	}
+	
+	public void speciEmpPerformance(){
+		try {
+			String findPHis = "Select employee.first_name, employee.last_name, performHistory.* from performHistory inner join employee on employee.employee_number = performHistory.employee_number WHERE employee.employee_number = ?";
+			PreparedStatement statement = databaseConn.connection.prepareStatement(findPHis);
+			
+			System.out.println("type employee number you want to see performance history of");
+			statement.setInt(1, input.nextInt());
+			
+			
+			ResultSet result = statement.executeQuery();
+			
+			
+			int count = 0;
+			System.out.println("-----------------------------------------------------------------------------");
+			System.out.printf("%10s %10s %10s %10s %10s %10s", "COUNT", "FIRST NAME", "LAST NAME", "EMPLOYEE NUMBER", "PERFORMANCE", "TIME");
+			System.out.println();
+			System.out.println("-----------------------------------------------------------------------------");
+			
+			while (result.next()){
+				String fname = result.getString("first_name");
+				String lname = result.getString("last_name");
+				int employeeNum = result.getInt("employee_number");
+				int performance = result.getInt("performances");
+				Date date = result.getDate("dategiven");
+				
+				String output = "|#%d:| %-10s | %-10s | %-10d | %-10d | %-10d";
+				System.out.println(String.format(output, ++count, fname, lname, employeeNum, performance, date));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

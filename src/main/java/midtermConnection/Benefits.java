@@ -20,7 +20,7 @@ public class Benefits extends DatabaseConnection{
 		
 		try
 		{
-			String findBenefits = "Select * FROM benefits";
+			String findBenefits = "Select employee.first_name, benefits.* FROM benefits inner join employee on employee.employee_number = benefits.employee_number";
 			Statement statement = bitsConn.connection.createStatement();
 			ResultSet result1 = statement.executeQuery(findBenefits);
 			System.out.println("-----------------------------------------------------------------------------");
@@ -96,13 +96,14 @@ public class Benefits extends DatabaseConnection{
 			{
 				System.out.println("Benefits was deleted");
 			}
-		}
+			findBenefits();
+		}		
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 			
-		}
+	}
 	public void updateBenefits() {
 		 DatabaseConnection bitsConn = new DatabaseConnection();
 		 Scanner bits = new Scanner(System.in);
@@ -126,6 +127,8 @@ public class Benefits extends DatabaseConnection{
 			 if(rowsUpdated > 0) {
 				 System .out.println("Benefits has been updated");
 			 }
+			 
+			 findBenefits();
 		 }catch(Exception e) {
 			 e.printStackTrace();
 		 }
